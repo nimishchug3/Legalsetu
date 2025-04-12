@@ -77,6 +77,7 @@ LegalSetu is a multilingual, AI-driven legal assistance platform designed to bri
 
 **Find-a-Lawyer Interface:**
 ![Find a Lawyer](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Search-a-Lawyer.png )
+![Find a Lawyer](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Search-a-Lawyer(2).png )
 
 
 
