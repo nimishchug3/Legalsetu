@@ -68,6 +68,7 @@ const SummarizeDocumentPage = () => {
       setIsAnalyzing(false);
       setIsAnalyzed(true);
       
+      
       // Sample data for demonstration
       setAnalysisResult({
         summary: 'This is a tenancy agreement between Amit Kumar (Landlord) and Priya Singh (Tenant) for property located at 123 Main St, New Delhi for a period of 11 months starting from Jan 1, 2023, with a monthly rent of ₹15,000 and security deposit of ₹45,000.',

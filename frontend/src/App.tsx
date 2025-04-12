@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/ask" element={<AskQuestion />} />
-          <Route path="/summarize" element={<SummarizeDocument />} />
+        <Route path="/summarize" element={<FileUpload />} />
           <Route path="/find-lawyer" element={<FindLawyer />} />
         <Route path="/upload" element={<FileUpload />} />
           <Route path="/login" element={<LoginPage />} />
