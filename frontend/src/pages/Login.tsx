@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,8 +9,12 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import {login} from './../actions.js'
+import {signup} from './../actions.js';
+
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [registerName, setRegisterName] = useState('');
@@ -19,9 +24,26 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData= {
+      email: loginEmail,
+      password: loginPassword,
+    }
     console.log('Login with:', { loginEmail, loginPassword });
+    console.log('formData', formData);
+    const response = await login(formData);
+    console.log("response", response);
+    if (response.status) {
+      if (response.user) {
+        const userCopy = response.user;
+        delete userCopy.password;
+        localStorage.setItem("user", JSON.stringify(userCopy));
+      }
+      navigate("/");
+      return;
+    }
+    alert("Not allowed. Have a great day :)");
     // Add login logic here
   };
   
@@ -29,6 +51,24 @@ const LoginPage = () => {
     e.preventDefault();
     console.log('Register with:', { registerName, registerEmail, registerPassword });
     // Add registration logic here
+    const formData = {
+      name: registerName,
+      email: registerEmail,
+      password: registerPassword
+    };
+    console.log('formData', formData);
+    const response = signup(formData);
+    console.log("response", response);
+    if (response.status) {
+      if (response.user) {
+        const userCopy = response.user;
+        delete userCopy.password;
+        localStorage.setItem("user", JSON.stringify(userCopy));
+      }
+      navigate("/ask");
+      return;
+    }
+    
   };
   
   return (
