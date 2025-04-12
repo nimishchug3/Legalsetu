@@ -8,7 +8,7 @@ const db=require("./db");
 const app=express();
 
 app.use(cors({
-    origin:"*",
+    origin:"http://localhost:8080",
     credentials:true,
 }));
 
