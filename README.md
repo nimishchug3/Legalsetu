@@ -88,7 +88,7 @@ LegalSetu is a multilingual, AI-driven legal assistance platform designed to bri
 git clone https://github.com/nimishchug3/Legalsetu.git
 cd Legalsetu
 npm install
-cd client && npm install
+cd frontend && npm install
 
 # Create .env file in root directory
 echo "MONGODB_URI=your_mongodb_uri
