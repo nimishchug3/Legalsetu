@@ -20,7 +20,7 @@ app.use(cookies());
 // Routes
 app.use("/api/v1", backendRoutes);
 
-const port = 8000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

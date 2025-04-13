@@ -62,7 +62,7 @@ const SummarizeDocumentPage = () => {
       setError('');
 
       const response = await axios.post(
-        'http://localhost:8000/api/v1/summary/upload',
+        'http://localhost:5000/api/v1/summary/upload',
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );

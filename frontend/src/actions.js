@@ -6,7 +6,7 @@ export const  signup=async (user)=>{
 
 try{
     console.log("user",user);
-    const response=await axios.post("http://localhost:8000/api/v1/user/register",user,{
+    const response=await axios.post("http://localhost:5000/api/v1/user/register",user,{
         withCredentials:true,
     }  );
     console.log("response",response);
@@ -36,7 +36,7 @@ catch(err){
 export const login=async(user)=>{
     try {
         console.log("user",user);
-    const response = await axios.post("http://localhost:8000/api/v1/user/login", 
+    const response = await axios.post("http://localhost:5000/api/v1/user/login", 
     user ,
     {
         withCredentials: true,
