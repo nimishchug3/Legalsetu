@@ -1,6 +1,18 @@
-# # ⚖️ LegalSetu – AI-Powered Legal Assistance Platform
+# ⚖️ LegalSetu – AI-Powered Legal Assistance Platform
 
 LegalSetu is a multilingual, AI-driven legal assistance platform designed to bridge the legal awareness gap for citizens, especially in rural India. With voice and text input, document summarization, and a lawyer discovery system — LegalSetu aims to simplify access to justice.
+
+---
+
+## 📌 Presentation 
+
+![PPT Presentation](Add_PPT_LINK_HERE)
+
+---
+
+## 📌 Demo
+
+![Video Demo](Add_VIDEO_LINK_HERE)
 
 ---
 
@@ -42,44 +54,56 @@ LegalSetu is a multilingual, AI-driven legal assistance platform designed to bri
 | **Document Processing** | OCR + NLP – extract and process legal text |
 | **Language Support**| Google Translate API – supports Indian regional languages |
 
-
 ---
 ## 📸 Screenshots
 
 ### 🏠 Homepage
 
-![Homepage Screenshot 1](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Homepage.png )
-![Homepage Screenshot 2](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Homepage%20(2).png )
+![Homepage Screenshot 1](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Homepage.png)
+![Homepage Screenshot 2](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Homepage%20(2).png)
 
 ---
 
 ### 🤖 Chatbot
 
 **Chatbot Interface:**
-![Chatbot Screenshot](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Chatbot.png )
+![Chatbot Screenshot](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Chatbot.png)
 
 ---
 
 ### 📄 Document Summarizer
 
 **View 1 – Upload Document:**
-![Upload Document](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Document-summariser.png )
+![Upload Document](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Document-summariser.png)
 
 **View 2 – Summary Display:**
-![Summary View](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary.jpg )
+![Summary View](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary.jpg)
 
 **View 3 – Detailed Summary:**
-![Detailed Summary](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary(1).jpg )
+![Detailed Summary](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary(1).jpg)
 
 ---
 
 ### ⚖️ Find-a-Lawyer
 
 **Find-a-Lawyer Interface:**
-![Find a Lawyer](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Search-a-Lawyer.png )
+![Find a Lawyer](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Search-a-Lawyer.png)
 ![Find a Lawyer](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Search-a-lawyer%20(2).png)
 
+---
 
+### Installation
+```bash
+git clone https://github.com/nimishchug3/Legalsetu.git
+cd Legalsetu
+npm install
+cd client && npm install
 
+# Create .env file in root directory
+echo "MONGODB_URI=your_mongodb_uri
+GEMINI_API_KEY=your_google_ai_key
+TRANSLATE_API_KEY=your_translate_key" > .env
 
+# Start servers
+npm run dev & cd client && npm start
 
