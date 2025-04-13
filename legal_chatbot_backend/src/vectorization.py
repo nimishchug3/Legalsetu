@@ -81,3 +81,11 @@ if __name__ == "__main__":
     # Process criminal laws directory if it has PDFs
     if os.path.exists("../data/pdfs/criminal_laws"):
         process_pdf_directory("../data/pdfs/criminal_laws")
+
+    if os.path.exists("../data/pdfs/coi_laws"):
+        process_pdf_directory("../data/pdfs/coi_laws")
+
+    if os.path.exists("../data/pdfs/ipc_laws"):
+        process_pdf_directory("../data/pdfs/ipc_laws")
+
+

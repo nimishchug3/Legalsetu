@@ -122,6 +122,25 @@ if __name__ == "__main__":
             "../data/processed", 
             "criminal_laws"
         )
+    if os.path.exists("../data/embeddings/coi_embeddings.pkl"):
+        index, id_to_metadata = load_and_store_embeddings(
+            index, 
+            id_to_metadata,
+            "../data/embeddings", 
+            "../data/processed", 
+            "coi_laws"
+        )
+    
+    if os.path.exists("../data/embeddings/ipc_embeddings.pkl"):
+        index, id_to_metadata = load_and_store_embeddings(
+            index, 
+            id_to_metadata,
+            "../data/embeddings", 
+            "../data/processed", 
+            "ipc_laws"
+        )
+    
+    
     
     # Save the index and metadata for later use
     save_faiss_index(index, id_to_metadata)
