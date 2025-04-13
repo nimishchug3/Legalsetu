@@ -12,7 +12,7 @@ LegalSetu is a multilingual, AI-driven legal assistance platform designed to bri
 
 ## 📌 Demo
 
-![Video Demo](https://github.com/nimishchug3/Legalsetu)
+![Video Demo](https://drive.google.com/file/d/13_QMoOvxpjBakIvhycAoucIXcZ1p1m3x/view?usp=drive_link)
 
 ---
 
