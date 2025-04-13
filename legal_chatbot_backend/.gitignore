@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+
+# VSCode settings
+.vscode/
+
+# Data
+data/embeddings/
+data/processed/
+
+# OS files
+.DS_Store
+Thumbs.db

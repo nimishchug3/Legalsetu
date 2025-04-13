@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Mic, ArrowLeft, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,18 +7,15 @@ import Footer from '@/components/Footer';
 const AskQuestionPage = () => {
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [chatHistory, setChatHistory] = useState([
     { 
       role: 'bot', 
       content: 'Welcome to LegalSetu! How can I assist you with your legal questions today? You can ask in your preferred language.' 
     }
   ]);
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
-  const languages = ['English', 'Hindi', 'Bengali', 'Tamil', 'Telugu', 'Marathi', 'Gujarati'];
-  
+
   const suggestedQuestions = [
     "What are my rights if I'm arrested?",
     "How can I file for divorce?",
@@ -27,70 +23,79 @@ const AskQuestionPage = () => {
     "How to file a consumer complaint?",
     "What are the legal procedures for starting a business?"
   ];
-  
+
   useEffect(() => {
     scrollToBottom();
   }, [chatHistory]);
-  
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-  
-  const handleSendMessage = () => {
+
+  const handleSendMessage = async () => {
     if (message.trim() === '') return;
-    
-    setChatHistory([...chatHistory, { role: 'user', content: message }]);
+
+    const userMessage = message;
+    setChatHistory([...chatHistory, { role: 'user', content: userMessage }]);
     setMessage('');
-    
-    // Simulate bot response for demo
-    setTimeout(() => {
-      let botResponse = "Thank you for your question. I'm analyzing relevant legal information to provide you with accurate guidance. ";
-      
-      if (message.toLowerCase().includes('arrest') || message.toLowerCase().includes('rights')) {
-        botResponse += "If you're arrested, you have the following rights: 1. Right to know the grounds of arrest. 2. Right to inform a friend or relative. 3. Right to consult a lawyer. 4. Right to be produced before a magistrate within 24 hours. These rights are guaranteed under Article 22 of the Indian Constitution and Section 50 of the Code of Criminal Procedure.";
-      } else if (message.toLowerCase().includes('divorce')) {
-        botResponse += "For divorce in India, you can file either mutual consent divorce (Section 13B of Hindu Marriage Act) or contested divorce. The process involves filing a petition, mediation, and court hearings. Required documents include marriage certificate, address proof, and income proof. The process typically takes 6-18 months for mutual consent and longer for contested cases.";
-      } else {
-        botResponse += "Based on your query, I'd recommend consulting with a specialized lawyer for personalized advice. Would you like me to help you find a lawyer in your area who specializes in this matter?";
-      }
-      
-      setChatHistory(prev => [...prev, { role: 'bot', content: botResponse }]);
-    }, 1000);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: userMessage,
+          language: "English", // default language for now
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to get response from backend');
+
+      const data = await response.json();
+      setChatHistory(prev => [...prev, { role: 'bot', content: data.response }]);
+    } catch (error) {
+      console.error('Error:', error);
+      setChatHistory(prev => [...prev, {
+        role: 'bot',
+        content: "Oops! Something went wrong. Please try again later."
+      }]);
+    }
   };
-  
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
-  
+
   const handleSuggestedQuestion = (question: string) => {
     setMessage(question);
     setTimeout(() => {
       handleSendMessage();
     }, 100);
   };
-  
+
   const toggleRecording = () => {
     setIsRecording(!isRecording);
-    // In a real app, this would trigger voice recording
+    // Simulated voice-to-text
     if (!isRecording) {
       setTimeout(() => {
         setIsRecording(false);
         setMessage("What are the legal requirements for registering a property?");
-        // Auto send after "voice recognition"
         setTimeout(() => {
           handleSendMessage();
         }, 500);
       }, 2000);
     }
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-6">
@@ -99,31 +104,21 @@ const AskQuestionPage = () => {
               Get instant answers to your legal questions in simple, easy-to-understand language.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Sidebar */}
             <div className="hidden lg:block">
               <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
                 <h3 className="font-bold text-lg mb-4 text-legalsetu-dark">Popular Topics</h3>
                 <ul className="space-y-2">
-                  <li>
-                    <a href="#" className="text-legalsetu-primary hover:underline">Family Law</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-legalsetu-primary hover:underline">Property Law</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-legalsetu-primary hover:underline">Criminal Law</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-legalsetu-primary hover:underline">Consumer Rights</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-legalsetu-primary hover:underline">Labor Laws</a>
-                  </li>
+                  <li><a href="#" className="text-legalsetu-primary hover:underline">Family Law</a></li>
+                  <li><a href="#" className="text-legalsetu-primary hover:underline">Property Law</a></li>
+                  <li><a href="#" className="text-legalsetu-primary hover:underline">Criminal Law</a></li>
+                  <li><a href="#" className="text-legalsetu-primary hover:underline">Consumer Rights</a></li>
+                  <li><a href="#" className="text-legalsetu-primary hover:underline">Labor Laws</a></li>
                 </ul>
               </div>
-              
+
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="font-bold text-lg mb-4 text-legalsetu-dark">Recent Updates</h3>
                 <div className="space-y-4">
@@ -144,7 +139,7 @@ const AskQuestionPage = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Chat Area */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-lg shadow-sm border overflow-hidden flex flex-col h-[70vh]">
@@ -154,19 +149,8 @@ const AskQuestionPage = () => {
                     <ArrowLeft className="mr-2 cursor-pointer" size={20} />
                     <h2 className="font-medium">Legal Assistant</h2>
                   </div>
-                  <div>
-                    <select 
-                      className="text-sm border rounded-md px-2 py-1 text-legalsetu-dark"
-                      value={selectedLanguage}
-                      onChange={(e) => setSelectedLanguage(e.target.value)}
-                    >
-                      {languages.map(lang => (
-                        <option key={lang} value={lang}>{lang}</option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
-                
+
                 {/* Chat messages */}
                 <div className="flex-grow overflow-y-auto p-4 space-y-4">
                   {chatHistory.map((chat, index) => (
@@ -186,7 +170,7 @@ const AskQuestionPage = () => {
                     </div>
                   ))}
                   <div ref={messagesEndRef} />
-                  
+
                   {/* Show suggested questions if chat is empty */}
                   {chatHistory.length === 1 && (
                     <div className="pt-4">
@@ -206,13 +190,13 @@ const AskQuestionPage = () => {
                     </div>
                   )}
                 </div>
-                
+
                 {/* Chat input */}
                 <div className="border-t p-3 bg-white">
                   <div className="flex items-center">
                     <textarea
                       className="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-legalsetu-primary resize-none"
-                      placeholder={`Type your legal question in ${selectedLanguage}...`}
+                      placeholder="Type your legal question..."
                       rows={2}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
@@ -253,7 +237,7 @@ const AskQuestionPage = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
