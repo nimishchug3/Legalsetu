@@ -71,10 +71,7 @@ LegalSetu is a multilingual, AI-driven legal assistance platform designed to bri
 ![Upload Document](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Document-summariser.png)
 
 **View 2 – Summary Display:**
-![Summary View](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary.jpg)
-
-**View 3 – Detailed Summary:**
-![Detailed Summary](https://github.com/nimishchug3/Legalsetu/blob/main/assets/document-summary(1).jpg)
+![Summary View](https://github.com/nimishchug3/Legalsetu/blob/main/assets/Document-summaryy.jpg)
 
 ---
 
