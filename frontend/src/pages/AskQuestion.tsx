@@ -119,25 +119,33 @@ const AskQuestionPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="font-bold text-lg mb-4 text-legalsetu-dark">Recent Updates</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Clock className="text-legalsetu-primary flex-shrink-0 mt-1" size={16} />
-                    <div>
-                      <p className="text-sm">New consumer protection rules announced</p>
-                      <p className="text-xs text-gray-500 mt-1">2 days ago</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Clock className="text-legalsetu-primary flex-shrink-0 mt-1" size={16} />
-                    <div>
-                      <p className="text-sm">Supreme Court ruling on property rights</p>
-                      <p className="text-xs text-gray-500 mt-1">1 week ago</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             <div className="bg-white p-6 rounded-lg shadow-sm">
+  <h3 className="font-bold text-lg mb-4 text-legalsetu-dark">Recent Updates</h3>
+  <div className="space-y-4">
+    <div className="flex items-start space-x-3">
+      <Clock className="text-legalsetu-primary flex-shrink-0 mt-1" size={16} />
+      <div>
+        <p className="text-sm">Uttarakhand passes Uniform Civil Code for equal legal rights</p>
+        <p className="text-xs text-gray-500 mt-1">3 days ago</p>
+      </div>
+    </div>
+    <div className="flex items-start space-x-3">
+      <Clock className="text-legalsetu-primary flex-shrink-0 mt-1" size={16} />
+      <div>
+        <p className="text-sm">Supreme Court to examine revocation of OCI status in legal rights case</p>
+        <p className="text-xs text-gray-500 mt-1">5 days ago</p>
+      </div>
+    </div>
+    <div className="flex items-start space-x-3">
+      <Clock className="text-legalsetu-primary flex-shrink-0 mt-1" size={16} />
+      <div>
+        <p className="text-sm">Law Commission recommends reforms in criminal sentencing guidelines</p>
+        <p className="text-xs text-gray-500 mt-1">1 week ago</p>
+      </div>
+    </div>
+  </div>
+</div>
+
             </div>
 
             {/* Chat Area */}

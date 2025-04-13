@@ -20,19 +20,50 @@ async function generateLegalSummary(text) {
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
-    const prompt = `
-You are a legal expert. Please summarize the following document:
+  // Modify the generateLegalSummary prompt to enforce better structure
+const prompt = `
+Analyze this legal document and provide a structured summary using markdown formatting. Focus on clarity and organization:
 
-${text.substring(0, 30000)}
+*Document Text:*
+${text.substring(0, 30000).trim()}
 
-Provide:
-1. Document type and purpose
-2. Key legal points
-3. Important dates
-4. Risks or concerns
-5. Explanation of terminology
-    `;
+*Required Structure:*
+## Document Type and Purpose
+- [Identify document type (contract, agreement, etc.)]
+- [State primary purpose]
 
+## Key Legal Points
+1. [First key point]
+2. [Second key point]
+...
+
+## Important Dates
+List each date with a clear title and corresponding description. Use this format:
+- *[Event Name]*: [Description or note if missing]
+
+If a date is missing, represented as "(DATE)", "N/A", or blank, indicate this with:  
+⚠ *[Event Name]: *Date not specified in the document
+
+Use event titles like "Effective Date", "Agreement End Date", "Invoice Submission Deadline", etc.
+...
+
+## Risks and Concerns
+⚠ [Risk 1]: [Explanation]
+⚠ [Risk 2]: [Explanation]
+...
+
+## Legal Terminology
+*Term 1*: [Definition]
+*Term 2*: [Definition]
+...
+
+Format requirements:
+- Use proper markdown headers (##) for sections
+- Use bullet points for lists
+- Bold important terms
+- Keep explanations concise
+- Never use markdown tables
+`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     return response.text();
